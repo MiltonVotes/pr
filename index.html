@@ -207,12 +207,15 @@
       if (selectedPrecincts[name]) return;
       const url = sheetsUrls[name];
       log(`Fetching sheet data from: ${url}`);
+      log(`GOT HERE 1`);
       const data = await fetch(url).then(r => r.json());
+      log(`GOT HERE 2`);
       log(`Fetched ${data.length} voters`);
       currentData[name] = data;
       selectedPrecincts[name] = true;
       precinctMarkers[name] = [];
 
+      log(`GOT HERE 3`);
       data.forEach(v => {
         // RDC: don't need to alter 'Precinct' column
 //        v.Precinct = name.replace('Precinct ', '');
@@ -226,6 +229,7 @@
         precinctMarkers[name].push(marker);
         markerMap.set(v.Voter_ID, marker);
       });
+      log(`GOT HERE 4 - ${data.length}`);
 
       renderRows();
     }
@@ -242,6 +246,7 @@
     }
 
     function renderRows() {
+      log(`GOT HERE 5 - RENDERING ROWS`);
       const t = document.getElementById('data-table');
       t.innerHTML = '';
       const keys = ['Voter_ID', 'Name', 'Address', 'Age', 'Party', 'Occupation', 'Precinct', 'Turf', 'Voted_Town', 'Voted_MBTA', 'Voted_State', 'Num_Voters', 'Phone', 'Email', 'Visit_Status', 'Support_Status', 'Notes'];
