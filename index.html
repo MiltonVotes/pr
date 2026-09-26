@@ -207,10 +207,10 @@
       if (selectedPrecincts[name]) return;
       const url = sheetsUrls[name];
       log(`Fetching sheet data from: ${url}`);
-      log(`GOT HERE 1`);
+      log(`GOT HERE 1 **`);
 //      const data = await fetch(url).then(r => r.json());
       const data = await fetch(url, {method: 'GET', redirect: 'follow'}).then(r => r.json());
-      log(`GOT HERE 2`);
+      log(`GOT HERE 2 **`);
       log(`Fetched ${data.length} voters`);
       currentData[name] = data;
       selectedPrecincts[name] = true;
